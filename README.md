@@ -10,7 +10,7 @@ Pipeline Architecture
 The workflow is divided into modular phases to ensure high reproducibility and biological viability:
 Automated Genomic Extraction: Interacts directly with the Ensembl REST API to retrieve precise proximal and distal promoter sequences (e.g., -2000 to +500 bp relative to the TSS) based on the provided Ensembl ID.
 Dual Motif Scanning: Dynamically fetches Position Weight Matrices (PWMs) from the complete JASPAR CORE human catalog and validates them against HOCOMOCO v11, applying strict conservation affinity thresholds (>82%).
-Epigenetic ML Filter: Mitigates the high false-positive rate of traditional PWM scanning using a Random Forest classifier. It evaluates the 3D chromatin accessibility and epigenetic viability of the local genomic context based on CpG dinucleotide density and GC transitions in the flanking regions.
+ML Filter: Mitigates the high false-positive rate of traditional PWM scanning using a Random Forest classifier. It evaluates the 3D chromatin accessibility and epigenetic viability of the local genomic context based on CpG dinucleotide density and GC transitions in the flanking regions.
 Systems Biology Integration: Submits the validated transcription factors to the MaayanLab Enrichr API in real-time, mapping hijacked signaling pathways (KEGG 2021 Human) and clinical disease associations (DisGeNET).
 
 Prerequisites
@@ -21,26 +21,24 @@ pip install pandas numpy scikit-learn biopython requests urllib3
 
 Configuration & Usage
 
-The script is designed as a standalone, zero-configuration executable. To analyze your gene of interest, open Master_Promoter_Analyzer.py and modify the USER CONFIGURATION ZONE at the bottom of the script:
+The script is designed as a standalone, zero-configuration executable. To analyze your gene of interest, modify the USER CONFIGURATION at the top of the script:
 # Target Gene Ensembl ID
-TARGET_GENE_ID = "ENSG00000091127" 
+TARGET_GENE_ID =
 
 # Promoter window coordinates (base pairs)
-UPSTREAM_BP = 2000    
-DOWNSTREAM_BP = 500   
+UPSTREAM_BP =    
+DOWNSTREAM_BP =    
 
 # Minimum affinity threshold for the primary PWM scan
-JASPAR_THRESHOLD = 0.82 
+JASPAR_THRESHOLD = 
 
-
-Once configured, run the script from your terminal:
-python Master_Promoter_Analyzer.py
+Once configured, run the script from your terminal
 
 
 Output Files
 
 The pipeline generates comprehensive CSV reports in your working directory:
-Base_Results_[Gene].csv: Consolidated catalog of all mathematically and epigenetically viable TFBS, maintaining sequence data and ML confidence scores.
+Base_Results_[Gene].csv: Consolidated catalog of all mathematically viable TFBS, maintaining sequence data and ML confidence scores.
 Oncological_Filter_[Gene].csv: Subset containing TFs with direct clinical associations according to DisGeNET.
 Metabolic_Pathways_[Gene].csv: Subset of TFs associated with general metabolic and signaling pathways mapped via KEGG.
 
