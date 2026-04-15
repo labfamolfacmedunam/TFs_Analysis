@@ -1,8 +1,8 @@
 TFBS Analyzer
 
 Overview
-This Analyzer is an end-to-end in silico bioinformatics pipeline designed to elucidate the transcriptional regulatory network of any user-defined target gene (default: PUS7).
-By integrating automated genomic sequence retrieval, dual predictive motif scanning, Machine Learning (Random Forest) filtering, and systems biology annotation via MaayanLab Enrichr, this custom script identifies clinically relevant Transcription Factor Binding Sites (TFBS). It includes a specialized focus on precision oncology, isolating regulatory targets with confirmed clinical associations.
+This Analyzer is an end-to-end in silico bioinformatics pipeline designed to elucidate the transcriptional regulatory network of any user-defined target gene.
+By integrating automated genomic sequence retrieval, dual predictive motif scanning, Machine Learning (Random Forest) filtering, and systems biology annotation via MaayanLab Enrichr, this custom script identifies clinically relevant Transcription Factor Binding Sites (TFBS). It includes a specialized focus in isolating regulatory targets with confirmed clinical associations.
 
 Pipeline Architecture
 
@@ -10,7 +10,7 @@ The workflow is divided into modular phases to ensure high reproducibility and b
 Automated Genomic Extraction: Interacts directly with the Ensembl REST API to retrieve precise proximal and distal promoter sequences (e.g., -2000 to +500 bp relative to the TSS) based on the provided Ensembl ID.
 Dual Motif Scanning: Dynamically fetches Position Weight Matrices (PWMs) from the complete JASPAR CORE human catalog and validates them against HOCOMOCO v11, applying strict conservation affinity thresholds (>82%).
 Epigenetic ML Filter: Mitigates the high false-positive rate of traditional PWM scanning using a Random Forest classifier. It evaluates the 3D chromatin accessibility and epigenetic viability of the local genomic context based on CpG dinucleotide density and GC transitions in the flanking regions.
-Systems Biology Integration: Submits the validated transcription factors to the MaayanLab Enrichr API in real-time, mapping hijacked signaling pathways (KEGG 2021 Human) and clinical/oncological disease associations (DisGeNET).
+Systems Biology Integration: Submits the validated transcription factors to the MaayanLab Enrichr API in real-time, mapping hijacked signaling pathways (KEGG 2021 Human) and clinical disease associations (DisGeNET).
 
 Prerequisites
 
@@ -38,9 +38,9 @@ python Master_Promoter_Analyzer.py
 
 Output Files
 
-The pipeline is non-destructive and generates comprehensive CSV reports in your working directory:
+The pipeline generates comprehensive CSV reports in your working directory:
 Base_Results_[Gene].csv: Consolidated catalog of all mathematically and epigenetically viable TFBS, maintaining sequence data and ML confidence scores.
-Oncological_Filter_[Gene].csv: Highly purified subset containing TFs with direct therapeutic/oncological associations according to DisGeNET.
+Oncological_Filter_[Gene].csv: Subset containing TFs with direct clinical associations according to DisGeNET.
 Metabolic_Pathways_[Gene].csv: Subset of TFs associated with general metabolic and signaling pathways mapped via KEGG.
 
 Scientific Justification
