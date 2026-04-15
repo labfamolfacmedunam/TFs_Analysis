@@ -1,6 +1,7 @@
 TFBS Analyzer
 
 Overview
+
 This Analyzer is an end-to-end in silico bioinformatics pipeline designed to elucidate the transcriptional regulatory network of any user-defined target gene.
 By integrating automated genomic sequence retrieval, dual predictive motif scanning, Machine Learning (Random Forest) filtering, and systems biology annotation via MaayanLab Enrichr, this custom script identifies clinically relevant Transcription Factor Binding Sites (TFBS). It includes a specialized focus in isolating regulatory targets with confirmed clinical associations.
 
