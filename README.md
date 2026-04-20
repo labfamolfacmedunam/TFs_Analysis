@@ -23,14 +23,14 @@ Configuration & Usage
 
 The script is designed as a standalone, zero-configuration executable. To analyze your gene of interest, modify the USER CONFIGURATION at the top of the script:
 # Target Gene Ensembl ID
-TARGET_GENE_ID =
+TARGET_GENE_ID = "ENSG00000091127" (For PUS7 analysis)
 
 # Promoter window coordinates (base pairs)
-UPSTREAM_BP =    
-DOWNSTREAM_BP =    
+UPSTREAM_BP = 2000 (For PUS7)    
+DOWNSTREAM_BP = 500 (For PUS7)    
 
 # Minimum affinity threshold for the primary PWM scan
-JASPAR_THRESHOLD = 
+JASPAR_THRESHOLD = 80
 
 Once configured, run the script from your terminal
 
