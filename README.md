@@ -9,7 +9,7 @@ Pipeline Architecture
 
 The workflow is divided into modular phases to ensure high reproducibility and biological viability:
 Automated Genomic Extraction: Interacts directly with the Ensembl REST API to retrieve precise proximal and distal promoter sequences (e.g., -2000 to +500 bp relative to the TSS) based on the provided Ensembl ID.
-Dual Motif Scanning: Dynamically fetches Position Weight Matrices (PWMs) from the complete JASPAR CORE human catalog and validates them against HOCOMOCO v11, applying strict conservation affinity thresholds (>82%).
+Dual Motif Scanning: Dynamically fetches Position Weight Matrices (PWMs) from the complete JASPAR CORE human catalog and validates them against HOCOMOCO v11, applying strict conservation affinity thresholds (>80%).
 ML Filter: Mitigates the high false-positive rate of traditional PWM scanning using a Random Forest classifier. It evaluates the 3D chromatin accessibility and epigenetic viability of the local genomic context based on CpG dinucleotide density and GC transitions in the flanking regions.
 Systems Biology Integration: Submits the validated transcription factors to the MaayanLab Enrichr API in real-time, mapping hijacked signaling pathways (KEGG 2021 Human) and clinical disease associations (DisGeNET).
 
